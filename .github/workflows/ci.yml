@@ -71,7 +71,6 @@ jobs:
           cargo build --target wasm32-unknown-unknown
       # make sure benches don't bit-rot
       - name: build benches
-        # TODO: --all-features
         run: cargo build --benches
       - name: Doctests
         run: |
