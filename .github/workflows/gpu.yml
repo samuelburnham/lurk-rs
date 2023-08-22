@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - gpu-ci
 
 env:
   CARGO_TERM_COLOR: always
