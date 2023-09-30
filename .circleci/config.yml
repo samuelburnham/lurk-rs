@@ -105,7 +105,6 @@ commands:
 
 jobs:
   test:
-    when: << pipeline.parameters.GHA_Action >>
     parameters:
      os:
        type: executor
@@ -140,6 +139,7 @@ jobs:
 
 workflows:
   test-all:
+    when: << pipeline.parameters.GHA_Action >>
     jobs:
       - test:
           matrix:
