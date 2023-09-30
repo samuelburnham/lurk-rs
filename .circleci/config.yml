@@ -1,5 +1,19 @@
 version: 2.1
 
+parameters:
+  GHA_Actor:
+    type: string
+    default: ""
+  GHA_Action:
+    type: string
+    default: ""
+  GHA_Event:
+    type: string
+    default: ""
+  GHA_Meta:
+    type: string
+    default: ""
+
 setup-env: &setup-env
   MSRV: 1.70.0
   RUSTFLAGS: "-Dwarnings"
@@ -8,16 +22,11 @@ setup-env: &setup-env
   RUST_LOG: info
 
 executors:
-  arm64:
+  linux:
     machine:
       image: ubuntu-2004:202101-01
     working_directory: ~/lurk
-    resource_class: arm.xlarge
-  darwin:
-    macos:
-      xcode: "14.3.1"
-    working_directory: ~/lurk
-    resource_class: macos.m1.large.gen1
+    resource_class: large
 
 commands:
   set_env_path:
@@ -96,6 +105,7 @@ commands:
 
 jobs:
   test:
+    when: << pipeline.parameters.GHA_Action >>
     parameters:
      os:
        type: executor
@@ -134,7 +144,7 @@ workflows:
       - test:
           matrix:
             parameters:
-              os: [arm64, darwin]
+              os: [linux]
           filters:
             branches:
                 ignore:
