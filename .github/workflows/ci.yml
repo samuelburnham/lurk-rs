@@ -209,6 +209,6 @@ jobs:
     steps:
       - name: Trigger CircleCI M1 Mac workflow
         id: mac-circleci
-        uses: circleci/trigger_circleci_pipeline@v1.0
+        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.1.0
         env:
           CCI_TOKEN: ${{ secrets.CIRCLECI_API_TOKEN }}
