@@ -3,7 +3,7 @@ name: Linux ignored tests
 
 on:
   pull_request:
-  merge_group:
+    types: [opened, synchronize, reopened, ready_for_review]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -13,6 +13,8 @@ jobs:
   linux-ignored:
     if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
     runs-on: buildjet-8vcpu-ubuntu-2204
+    environment:
+      name: ci-test
     env:
       RUSTFLAGS: -D warnings
     steps:
@@ -29,6 +31,8 @@ jobs:
   linux-arm:
     if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
     runs-on: buildjet-16vcpu-ubuntu-2204-arm
+    environment:
+      name: ci-test
     env:
       RUSTFLAGS: -D warnings
     steps:
@@ -48,6 +52,8 @@ jobs:
   trigger-circleci-m1-mac:
     if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
     runs-on: ubuntu-latest
+    environment: 
+      name: ci-test
     steps:
       - name: Trigger CircleCI M1 Mac workflow
         id: mac-circleci
