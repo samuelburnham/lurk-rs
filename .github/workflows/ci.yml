@@ -8,24 +8,24 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-   Disable incremental compilation.
+  # Disable incremental compilation.
   
-   Incremental compilation is useful as part of an edit-build-test-edit cycle,
-   as it lets the compiler avoid recompiling code that hasn't changed. However,
-   on CI, we're not making small edits; we're almost always building the entire
-   project from scratch. Thus, incremental compilation on CI actually
-   introduces *additional* overhead to support making future builds
-   faster...but no future builds will ever occur in any given CI environment.
+  # Incremental compilation is useful as part of an edit-build-test-edit cycle,
+  # as it lets the compiler avoid recompiling code that hasn't changed. However,
+  # on CI, we're not making small edits; we're almost always building the entire
+  # project from scratch. Thus, incremental compilation on CI actually
+  # introduces *additional* overhead to support making future builds
+  # faster...but no future builds will ever occur in any given CI environment.
   
-   See https://matklad.github.io/2021/09/04/fast-rust-builds.html#ci-workflow
-   for details.
+  # See https://matklad.github.io/2021/09/04/fast-rust-builds.html#ci-workflow
+  # for details.
   CARGO_INCREMENTAL: 0
-   Allow more retries for network requests in cargo (downloading crates) and
-   rustup (installing toolchains). This should help to reduce flaky CI failures
-   from transient network timeouts or other issues.
+  # Allow more retries for network requests in cargo (downloading crates) and
+  # rustup (installing toolchains). This should help to reduce flaky CI failures
+  # from transient network timeouts or other issues.
   CARGO_NET_RETRY: 10
   RUSTUP_MAX_RETRIES: 10
-   Don't emit giant backtraces in the CI logs.
+  # Don't emit giant backtraces in the CI logs.
   RUST_BACKTRACE: short
 
 concurrency:
@@ -101,11 +101,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
-       with:
-         components: rustfmt, clippy
+        with:
+          components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
       - name: rustfmt
-       uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@v1
         with:
           command: fmt
           args: --all --check
@@ -118,15 +118,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install rustup
-     uses: actions-rs/toolchain@v1
-     with:
-       toolchain: stable
-       override: true
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
     - uses: Swatinem/rust-cache@v2
     - name: Install cargo-msrv
-     run: cargo install cargo-msrv
+      run: cargo install cargo-msrv
     - name: Check Rust MSRV
-     run: cargo msrv verify
+      run: cargo msrv verify
   
   m1-mac-circleci:
     runs-on: ubuntu-latest
