@@ -104,12 +104,12 @@ jobs:
        with:
          components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
-       See '.cargo/config' for list of enabled/disabled clippy lints
       - name: rustfmt
        uses: actions-rs/cargo@v1
         with:
           command: fmt
           args: --all --check
+      # See '.cargo/config' for list of enabled/disabled clippy lints
       - name: cargo clippy
         run: cargo xclippy -D warnings
 

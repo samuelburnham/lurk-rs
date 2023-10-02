@@ -104,7 +104,7 @@ commands:
             rustc --version
 
 jobs:
-  test-circleci:
+  test:
     parameters:
      os:
        type: executor
@@ -138,7 +138,7 @@ jobs:
 
 
 workflows:
-  test-all:
+  test-circleci:
     when: << pipeline.parameters.GHA_Action >>
     jobs:
       - test:
