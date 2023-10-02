@@ -11,7 +11,6 @@ concurrency:
 
 jobs:
   linux-ignored:
-    if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
     runs-on: buildjet-8vcpu-ubuntu-2204
     environment:
       name: ci-test
@@ -29,7 +28,6 @@ jobs:
           cargo nextest run --profile ci --workspace --cargo-profile dev-ci --run-ignored ignored-only -E 'all() - test(groth16::tests::outer_prove_recursion) - test(test_make_fcomm_examples) - test(test_functional_commitments_demo) - test(test_chained_functional_commitments_demo)'
 
   linux-arm:
-    if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
     runs-on: buildjet-16vcpu-ubuntu-2204-arm
     environment:
       name: ci-test
@@ -50,7 +48,6 @@ jobs:
           cargo nextest run --profile ci --workspace --cargo-profile dev-no-assertions -E 'test(circuit::gadgets)'
 
   trigger-circleci-m1-mac:
-    if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
     runs-on: ubuntu-latest
     environment: 
       name: ci-test

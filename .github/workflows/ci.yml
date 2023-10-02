@@ -108,12 +108,3 @@ jobs:
       run: cargo install cargo-msrv
     - name: Check Rust MSRV
       run: cargo msrv verify
-  
-  m1-mac-circleci:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger CircleCI M1 Mac workflow
-        id: mac-circleci
-        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.1.0
-        env:
-          CCI_TOKEN: ${{ secrets.CIRCLECI_API_TOKEN }}
