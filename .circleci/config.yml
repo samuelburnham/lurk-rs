@@ -104,7 +104,7 @@ commands:
             rustc --version
 
 jobs:
-  test:
+  test-circleci:
     parameters:
      os:
        type: executor
