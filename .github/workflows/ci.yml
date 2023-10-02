@@ -9,14 +9,14 @@ on:
 env:
   CARGO_TERM_COLOR: always
   # Disable incremental compilation.
-  
+  #
   # Incremental compilation is useful as part of an edit-build-test-edit cycle,
   # as it lets the compiler avoid recompiling code that hasn't changed. However,
   # on CI, we're not making small edits; we're almost always building the entire
   # project from scratch. Thus, incremental compilation on CI actually
   # introduces *additional* overhead to support making future builds
   # faster...but no future builds will ever occur in any given CI environment.
-  
+  #
   # See https://matklad.github.io/2021/09/04/fast-rust-builds.html#ci-workflow
   # for details.
   CARGO_INCREMENTAL: 0
@@ -33,25 +33,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  linux:
-    runs-on: [self-hosted, test]
-    env:
-      RUSTFLAGS: -D warnings
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - uses: actions-rs/toolchain@v1
-      - uses: taiki-e/install-action@nextest
-      - uses: Swatinem/rust-cache@v2
-      - name: Linux Tests
-        run: |
-          cargo nextest run --profile ci --workspace --cargo-profile dev-ci
-      - name: Linux Gadget Tests w/o debug assertions
-        run: |
-          cargo nextest run --profile ci --workspace --cargo-profile dev-no-assertions -E 'test(circuit::gadgets)'
-
-  # 8 vCPU, 32 GB RAM, $0.016/min
   linux:
     runs-on: buildjet-8vcpu-ubuntu-2204
     env:
