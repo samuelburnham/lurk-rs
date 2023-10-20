@@ -34,7 +34,7 @@ concurrency:
 jobs:
   cuda:
     name: Rust tests on CUDA
-    runs-on: [self-hosted, gpu-bench]
+    runs-on: [self-hosted, gpu-paperspace]
     env:
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITITES: compute,utility
@@ -67,7 +67,7 @@ jobs:
 
   opencl:
     name: Rust tests on OpenCL
-    runs-on: [self-hosted, gpu-bench]
+    runs-on: [self-hosted, gpu-paperspace]
     env:
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITITES: compute,utility
