@@ -101,9 +101,9 @@ jobs:
       - name: Run fake benchmarks
         run: |
           mkdir -p target/criterion/reports
-          cat "Welcome to Criterion" > target/criterion/reports/index.html
+          echo "Welcome to Criterion" > target/criterion/reports/index.html
           mkdir -p target/criterion/reports/Fibonacci
-          cat "Welcome to Fibonacci" > target/criterion/reports/Fibonacci/index.html
+          echo "Welcome to Fibonacci" > target/criterion/reports/Fibonacci/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
