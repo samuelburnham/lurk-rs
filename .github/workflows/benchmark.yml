@@ -25,6 +25,9 @@ jobs:
   #    NVIDIA_DRIVER_CAPABILITITES: compute,utility
   #    EC_GPU_FRAMEWORK: cuda
   #  steps:
+  #    - uses: actions/checkout@v4
+  #    - uses: actions-rs/toolchain@v1
+  #    - uses: Swatinem/rust-cache@v2
   #    # GPU setup
   #    # Check we have access to the machine's Nvidia drivers
   #    - run: nvidia-smi
@@ -40,7 +43,20 @@ jobs:
   #    # This must also be compatible with the GPU architecture, see above link
   #    - run: nvcc --version
 
-      # Job steps
+  #    # Job steps
+  #    #- name: Setup Pages
+  #    #  uses: actions/configure-pages@v3
+  #    #- name: Install criterion
+  #    #  run: cargo install cargo-criterion
+  #    #- name: Run benchmarks
+  #    #  run: cargo criterion --bench fibonacci --message-format=json > ${{ github.sha }}.json
+  #    - name: Upload artifact
+  #      uses: actions/upload-pages-artifact@v2
+  #      with:
+  #        path: 'target/criterion/reports'
+  #    - name: Deploy to GitHub Pages
+  #      id: deployment
+  #      uses: actions/deploy-pages@v2
       #- id: check-branch-exists
       #  uses: GuillaumeFalourd/branch-exists@v1
       #  with:
@@ -82,10 +98,16 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Run fake benchmarks
+        run: |
+          mkdir -p target/criterion/reports
+          cat "Welcome to Criterion" > target/criterion/reports/index.html
+          mkdir -p target/criterion/reports/Fibonacci
+          cat "Welcome to Fibonacci" > target/criterion/reports/Fibonacci/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: 'notes'
+          path: 'target/criterion/reports'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
