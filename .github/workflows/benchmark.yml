@@ -7,7 +7,7 @@ on:
 jobs:
    benchmark:
      name: Continuous benchmarking
-     runs-on: ubuntu-latest
+     runs-on: gpu-bench-a6000
      steps:
        - uses: actions/checkout@v4
        - name: Get old benchmarks
@@ -19,7 +19,7 @@ jobs:
        - name: Install criterion
          run: cargo install cargo-criterion
        - name: Run benchmarks
-         run: cargo criterion --message-format=json > ${{ github.sha }}.json
+         run: cargo criterion --bench fibonacci --message-format=json > ${{ github.sha }}.json
        - name: Deploy latest benchmark report
          uses: peaceiris/actions-gh-pages@v3
          with:

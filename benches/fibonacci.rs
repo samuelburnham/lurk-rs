@@ -241,7 +241,7 @@ mod lem {
 fn fib_bench(c: &mut Criterion) {
     tracing::debug!("{:?}", &*lurk::config::CONFIG);
 
-    let reduction_counts = [100, 600, 700, 800, 900];
+    let reduction_counts = [100, 600];
     let folding_step_sizes = [2, 4, 8];
 
     let mut group: BenchmarkGroup<'_, _> = c.benchmark_group("Fibonacci");
