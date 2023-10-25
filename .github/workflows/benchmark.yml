@@ -100,6 +100,7 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Run fake benchmarks
         run: |
+          pwd
           mkdir -p target/criterion/reports
           echo "Welcome to Criterion" > target/criterion/reports/index.html
           mkdir -p target/criterion/reports/Fibonacci
