@@ -42,7 +42,7 @@ jobs:
   # TODO: Test timings with different architectures
   gpu-benchmark:
     name: run fibonacci benchmark on GPU
-    runs-on: [self-hosted, gpu-bench-aws]
+    runs-on: [self-hosted, gpu-bench-t4]
     env:
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITITES: compute,utility
