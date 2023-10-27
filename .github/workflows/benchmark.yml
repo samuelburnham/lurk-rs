@@ -9,7 +9,6 @@ jobs:
     name: Continuous benchmarking
     runs-on: ubuntu-latest
     steps:
-      - run: git rev-parse HEAD
       - run: echo "${{github.sha}} ${{github.ref}}"
       - uses: actions/checkout@v4
       - run: git rev-parse HEAD
