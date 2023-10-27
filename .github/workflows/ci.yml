@@ -43,7 +43,6 @@ jobs:
           submodules: recursive
       - name: Install dependencies
         run: sudo apt-get install -y pkg-config libssl-dev
-      - uses: actions-rs/toolchain@v1
       - uses: taiki-e/install-action@nextest
       - uses: Swatinem/rust-cache@v2
       - name: Linux Tests
@@ -64,7 +63,6 @@ jobs:
       RUSTFLAGS: -D warnings
     steps:
       - uses: actions/checkout@v4
-      - uses: actions-rs/toolchain@v1
       - uses: taiki-e/install-action@nextest
       - uses: Swatinem/rust-cache@v2
       - run: rustup target add wasm32-unknown-unknown
@@ -83,9 +81,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions-rs/toolchain@v1
-        with:
-          components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
       # See '.cargo/config' for list of enabled/disabled clippy lints
       - name: rustfmt
@@ -100,11 +95,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Install rustup
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        override: true
     - uses: Swatinem/rust-cache@v2
     - name: Install cargo-msrv
       run: cargo install cargo-msrv
