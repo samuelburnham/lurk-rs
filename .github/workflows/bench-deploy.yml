@@ -15,7 +15,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - uses: taiki-e/install-action@v2
         with:
-          tool: just@v1
+          tool: just@1.15.0
 
       # Set up GPU
       # Check we have access to the machine's Nvidia drivers
