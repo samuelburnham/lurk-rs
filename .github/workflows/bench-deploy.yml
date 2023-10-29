@@ -1,4 +1,4 @@
-name: Deploy GPU benchmarks on GH Pages
+name: GPU benchmarks
 on:
   workflow_dispatch:
   release:
@@ -10,6 +10,7 @@ jobs:
     runs-on: [self-hosted, gpu-bench-t4]
     steps:
       # Install deps
+      - uses: actions/checkout@v4
       - uses: actions-rs/toolchain@v1
       - uses: Swatinem/rust-cache@v2
       - uses: taiki-e/install-action@v2
