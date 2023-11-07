@@ -67,7 +67,7 @@ jobs:
   # TODO: Make this a required status check
   # Run comparative benchmark against master, reject on regression
   gpu-benchmark:
-    if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
+    #if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
     name: Run fibonacci bench on GPU
     runs-on: [self-hosted, gpu-bench]
     steps:
