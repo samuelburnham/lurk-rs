@@ -61,10 +61,11 @@ impl ProveParams {
         match output_type.as_ref() {
             "pr-comment" => ("fib".into(), format!("num-{}", self.fib_n)),
             "commit-comment" => {
-                let branch = env!("VERGEN_GIT_BRANCH");
-                let branch_name = parse_merge_branch(branch).unwrap();
+                //let branch = env!("VERGEN_GIT_BRANCH");
+                //let branch_name = parse_merge_branch(branch).unwrap();
+                let branch = env!("VERGEN_GIT_SHA");
                 (
-                    format!("fib-branch={}", branch_name),
+                    format!("fib-branch={}", branch),
                     format!("num-{}", self.fib_n),
                 )
             }
