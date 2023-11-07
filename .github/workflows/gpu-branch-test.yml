@@ -8,6 +8,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+jobs:
   gpu-benchmark:
     name: Run fibonacci bench on GPU
     runs-on: [self-hosted, gpu-bench-local]
