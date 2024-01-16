@@ -16,4 +16,4 @@ jobs:
   gpu-ci:
     name: Rust GPU tests
     if: github.event_name != 'pull_request' || github.event.action == 'enqueued'
-    uses: lurk-lab/ci-workflows/.github/workflows/gpu-ci.yml@main
+    uses: lurk-lab/ci-workflows/.github/workflows/gpu-ci-cuda.yml@main
